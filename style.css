@@ -1,3 +1,89 @@
 body {
     background-color: #EAE9E5;
 }
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #222;
+    margin: 0;
+    padding: 40px;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+header {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+main p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+a {
+    color: #222;
+    text-decoration: underline;
+}
+
+.projects {
+    margin-top: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px 0;
+}
+
+th {
+    font-weight: normal;
+    color: #777;
+}
+
+
+footer {
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    color: #555;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* For most browsers */
+::selection {
+    background: #222;
+    color: #fff;
+}
+
+/* For Firefox */
+::-moz-selection {
+    background: #222;
+    color: #fff;
+}
+
