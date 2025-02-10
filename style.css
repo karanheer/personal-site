@@ -97,7 +97,10 @@ table td {
 
 
 
-
+a {
+    text-decoration: underline;
+    text-underline-offset: 5.5px; /* Adjust the value as needed */
+}
 
 
 
