@@ -128,6 +128,11 @@ th:last-child, td:last-child {
 
 
 
+@media (max-width: 600px) { /* Adjust for your breakpoint */
+    th:nth-child(2), td:nth-child(2) {
+        display: none;
+    }
+}
 
 
 
