@@ -3,6 +3,28 @@ body {
 }
 
 
+html, body {
+    cursor: none; /* Hides the default cursor */
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 8px; /* Adjust size */
+    height: 8px;
+    background-color: black; /* Black dot */
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+
+
+
+
+
+
+
 body {
     font-family: 'Inter', sans-serif;
     color: #222;
@@ -20,18 +42,20 @@ header {
 }
 
 h1 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    margin: 5px 0;
+    margin:5px 0;
+     
 }
 
 .subtitle {
     font-size: 14px;
     color: #666;
+    margin-top:5px;
 }
 
 main p {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.5;
 }
 
@@ -48,13 +72,78 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    
+    table-layout: fixed; /* Ensures consistent column widths */
 }
 
 th, td {
     text-align: left;
     padding: 8px 0;
 }
+
+
+
+table td {
+    cursor: none !important; /* Ensures no default cursor on table data */
+    position: relative;
+}
+
+
+table td {
+    font-size: 14px; /* Adjust to your preference */
+    line-height: 0.9;
+    
+}
+
+
+
+
+
+
+
+
+td:hover {
+    text-decoration: underline;
+    cursor: pointer; /* Optional: Changes cursor to indicate interactivity */
+}
+
+
+
+
+
+
+th:first-child, td:first-child {
+    text-align: left;
+    width: 40%; /* Adjust width for first column */
+}
+
+th:nth-child(2), td:nth-child(2) {
+    text-align: left;
+    width: 30%; /* Adjust width for middle column */
+}
+
+th:last-child, td:last-child {
+    text-align: right;
+    width: 30%; /* Adjust width for last column */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 th {
     font-weight: normal;

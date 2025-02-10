@@ -36,3 +36,16 @@ fetchWeather(); // Get weather on page load
 updateTime(); // Get time on page load
 setInterval(updateTime, 1000); // Update time every second
 setInterval(fetchWeather, 600000); // Refresh weather every 10 minutes
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cursor = document.createElement("div");
+    cursor.classList.add("custom-cursor");
+    document.body.appendChild(cursor);
+
+    document.addEventListener("mousemove", (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+    });
+});
