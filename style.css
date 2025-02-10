@@ -48,6 +48,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+    
 }
 
 th, td {
@@ -91,3 +92,6 @@ html {
     scroll-behavior: smooth;
   }
   
+  hr {
+    border: 1px solid #ddd;
+  }
