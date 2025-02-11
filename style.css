@@ -1,6 +1,33 @@
 body {
     background-color: #EAE9E5;
+    transition: background 0.3s, color 0.3s;
 }
+
+
+
+.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+
+/* Button styles */
+#theme-toggle {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: none;
+}
+
+
+.container {
+    position: relative; /* Ensure the container is the reference point */
+}
+
+
 
 
 html, body {
@@ -19,7 +46,9 @@ html, body {
 }
 
 
-
+body.dark-mode .custom-cursor {
+    background-color: #EAE9E5;
+}
 
 
 
@@ -139,11 +168,25 @@ th:last-child, td:last-child {
 
 
 
+/*email link changes here in dark mode */
+/* Target only the email link */
+.email-link {
+    color: black;
+    text-decoration: underline;
+}
+
+/* Change email text to white in dark mode */
+body.dark-mode .email-link {
+    color: white;
+}
 
 
 
 
-
+/* Ensure the default pointer (hand) doesn't appear on interactive elements */
+button, a {
+    cursor: none; /* Removes the default hand cursor */
+}
 
 
 
