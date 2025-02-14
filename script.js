@@ -79,3 +79,38 @@ toggleButton.addEventListener("click", () => {
         toggleButton.textContent = "🌙";
     }
 });
+
+
+
+//spotify ting
+
+const accessToken = "BQDVYBbYlKVdWu2FUpkafjrBADYuoeXQA7nUhmHvq_q3k9LZM493GIqpjjDUKcwvY5d0PFdN5j39pr8d99IgZYUKyYt4gzX9o26DkLsIS3fwKykRxwcztQMb9AiBtUvCG9pch-sNqidXFz4gCEXrXaRoJYBthKHNpPISAeCNkFFIGeAi7qisrMEF6KXXGK_Qs9QTnSNB94mZPEdlQV0iR1iPbUeSgrVv0011G3Hjnpo&token_type=Bearer&expires_in=3600"; // Replace with your actual access token
+
+async function fetchCurrentlyPlaying() {
+    const response = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${accessToken}` }
+    });
+
+    if (response.status === 200) {
+        const data = await response.json();
+        if (data.item) {
+            const track = data.item;
+            const trackName = track.name;
+            const artistName = track.artists.map(artist => artist.name).join(", ");
+            const albumImage = track.album.images[0].url;
+
+            document.getElementById("track-info").innerHTML = `
+                <p><strong>${trackName}</strong> by ${artistName}</p>
+                <img src="${albumImage}" width="200" style="border-radius:10px;">
+            `;
+        } else {
+            document.getElementById("track-info").innerText = "No track currently playing.";
+        }
+    } else {
+        document.getElementById("track-info").innerText = "Unable to fetch track. Check token.";
+    }
+}
+
+fetchCurrentlyPlaying(); // Run once on load
+setInterval(fetchCurrentlyPlaying, 10000); // Update every 10 sec
