@@ -103,15 +103,28 @@
 
 
         
+<hr>
+<br>
 
-
-        <div id="spotify-widget">
-            <h2>Now Playing on Spotify 🎵</h2>
-            <div id="track-info">Loading...</div>
+<br>
+<center>
+        <div id="spotify-widget" class="spotify-widget">
+            <div class="song-info">
+                <div class="text-info">
+                    <h3 id="song-name">Loading...</h3>
+                    <p id="artist-name"></p>
+                </div>
+                <img id="album-cover" src="" alt="Album Cover" class="album-cover">
+            </div>
+            <div class="progress-bar-container">
+                <span id="current-time">0:00</span>
+                <input type="range" id="progress-bar" value="0" min="0" max="100" disabled>
+                <span id="total-time">0:00</span>
+            </div>
         </div>
         
-
-
+        
+    </center>
 
       
 

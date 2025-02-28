@@ -240,3 +240,69 @@ html {
 
 
 
+
+
+  .spotify-widget {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-info {
+    flex: 1;
+}
+
+.text-info h3 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.text-info p {
+    font-size: 14px;
+    color: gray;
+    margin: 2px 0 0;
+}
+
+.album-cover {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background: #ddd;
+}
+
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#progress-bar {
+    flex: 1;
+    margin: 0 10px;
+    cursor: pointer;
+    appearance: none;
+    height: 5px;
+    background: lightgray;
+    border-radius: 5px;
+}
+
+#progress-bar::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: gray;
+    border-radius: 50%;
+    cursor: pointer;
+}
+

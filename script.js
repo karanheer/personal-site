@@ -84,33 +84,82 @@ toggleButton.addEventListener("click", () => {
 
 //spotify ting
 
-const accessToken = "BQDVYBbYlKVdWu2FUpkafjrBADYuoeXQA7nUhmHvq_q3k9LZM493GIqpjjDUKcwvY5d0PFdN5j39pr8d99IgZYUKyYt4gzX9o26DkLsIS3fwKykRxwcztQMb9AiBtUvCG9pch-sNqidXFz4gCEXrXaRoJYBthKHNpPISAeCNkFFIGeAi7qisrMEF6KXXGK_Qs9QTnSNB94mZPEdlQV0iR1iPbUeSgrVv0011G3Hjnpo&token_type=Bearer&expires_in=3600"; // Replace with your actual access token
+
+
+////////////////////////////////////////////////////////////////////
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+const accessToken = "BQDVYBbYlKVdWu2FUpkafjrBADYuoeXQA7nUhmHvq_q3k9LZM493GIqpjjDUKcwvY5d0PFdN5j39pr8d99IgZYUKyYt4gzX9o26DkLsIS3fwKykRxwcztQMb9AiBtUvCG9pch-sNqidXFz4gCEXrXaRoJYBthKHNpPISAeCNkFFIGeAi7qisrMEF6KXXGK_Qs9QTnSNB94mZPEdlQV0iR1iPbUeSgrVv0011G3Hjnpo&token_type=Bearer&expires_in=3600";
 
 async function fetchCurrentlyPlaying() {
-    const response = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
-        method: "GET",
-        headers: { "Authorization": `Bearer ${accessToken}` }
-    });
+    try {
+        const response = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+            headers: { "Authorization": `Bearer ${accessToken}` }
+        });
 
-    if (response.status === 200) {
-        const data = await response.json();
-        if (data.item) {
-            const track = data.item;
-            const trackName = track.name;
-            const artistName = track.artists.map(artist => artist.name).join(", ");
-            const albumImage = track.album.images[0].url;
-
-            document.getElementById("track-info").innerHTML = `
-                <p><strong>${trackName}</strong> by ${artistName}</p>
-                <img src="${albumImage}" width="200" style="border-radius:10px;">
-            `;
-        } else {
-            document.getElementById("track-info").innerText = "No track currently playing.";
+        if (response.status === 204 || response.status === 200 && !(await response.json()).is_playing) {
+            await fetchLastPlayed();
+            return;
         }
-    } else {
-        document.getElementById("track-info").innerText = "Unable to fetch track. Check token.";
+
+        const data = await response.json();
+        updateWidget(data);
+    } catch (error) {
+        console.error("Error fetching Spotify data:", error);
     }
 }
 
-fetchCurrentlyPlaying(); // Run once on load
-setInterval(fetchCurrentlyPlaying, 10000); // Update every 10 sec
+async function fetchLastPlayed() {
+    try {
+        const response = await fetch("https://api.spotify.com/v1/me/player/recently-played?limit=1", {
+            headers: { "Authorization": `Bearer ${accessToken}` }
+        });
+
+        const data = await response.json();
+        if (data.items.length > 0) {
+            updateWidget(data.items[0].track);
+        }
+    } catch (error) {
+        console.error("Error fetching last played track:", error);
+    }
+}
+
+function updateWidget(track) {
+    document.getElementById("song-name").textContent = track.name;
+    document.getElementById("artist-name").textContent = track.artists.map(a => a.name).join(", ");
+    document.getElementById("album-cover").src = track.album.images[0]?.url || "";
+    document.getElementById("total-time").textContent = formatTime(track.duration_ms);
+    
+    if (track.progress_ms) {
+        updateProgress(track.progress_ms, track.duration_ms);
+    }
+}
+
+function updateProgress(progress, duration) {
+    const progressBar = document.getElementById("progress-bar");
+    progressBar.max = duration;
+    progressBar.value = progress;
+
+    document.getElementById("current-time").textContent = formatTime(progress);
+
+    setInterval(() => {
+        progress += 1000;
+        if (progress < duration) {
+            progressBar.value = progress;
+            document.getElementById("current-time").textContent = formatTime(progress);
+        }
+    }, 1000);
+}
+
+function formatTime(ms) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+
+setInterval(fetchCurrentlyPlaying, 5000);
+fetchCurrentlyPlaying();
