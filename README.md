@@ -1,1 +1,4 @@
-this is the pull request for the first setup on vs code x github
+A minimal portfolio site showcasing my work, experience, and live widgets (Spotify tracker, weather, and time). 
+
+Host on GitHub Pages. 
+Update API tokens as needed.
