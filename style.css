@@ -1,5 +1,5 @@
 body {
-    background-color: #EAE9E5;
+    background-color: #f2f1ef #EAE9E5;
     transition: background 0.3s, color 0.3s;
 }
 
@@ -49,9 +49,6 @@ html, body {
 body.dark-mode .custom-cursor {
     background-color: #EAE9E5;
 }
-
-
-
 
 
 body {
@@ -240,7 +237,7 @@ html {
 
 
 
-
+/*
 
   .spotify-widget {
     display: flex;
@@ -306,3 +303,4 @@ html {
     cursor: pointer;
 }
 
+*/
