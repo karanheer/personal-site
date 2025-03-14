@@ -25,7 +25,7 @@ function updateTime() {
         timeZone: 'Asia/Kolkata',
         hour: '2-digit',
         minute: '2-digit',
-      //  second: '2-digit'
+        second: '2-digit'
     };
     const timeString = new Date().toLocaleTimeString('en-US', options);
     document.getElementById('time-info').textContent = `${timeString} IST`;
