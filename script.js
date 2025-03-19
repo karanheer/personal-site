@@ -1,48 +1,52 @@
-// Update the time display
+// Global variables
+const WEATHER_API_KEY = 'fdb9a5dcd8d642f7e7a76c488c363485'; // Replace with your actual API key
+const CITY = 'Mumbai';
+const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&appid=${WEATHER_API_KEY}`;
+
+// Function to update the time display with seconds
 function updateTime() {
     const now = new Date();
     let hours = now.getHours();
-    let minutes = now.getMinutes();
-    let ampm = hours >= 12 ? 'PM' : 'AM';
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
     
-    // Convert to 12-hour format
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12; // Convert 0 to 12
     
-    // Add leading zeros to minutes
-    minutes = minutes < 10 ? '0' + minutes : minutes;
+    document.querySelector('.time').textContent = `${hours}:${minutes}:${seconds}${ampm}`;
     
-    const timeString = hours + ':' + minutes + ampm;
-    document.querySelector('.time').textContent = timeString;
+    // Update every second
+    setTimeout(updateTime, 1000);
 }
 
-// Call updateTime immediately and then every minute
-updateTime();
-setInterval(updateTime, 60000);
-
-// Fetch current weather data for Mumbai
-// This is a simplified version - in a real app, you would use an actual weather API
-function fetchWeather() {
-    // This would be replaced with an actual API call
-    // For demonstration purposes, we're just using the temperature from the design
-    const temperature = '25°C';
-    document.querySelector('.location').textContent = 'mumbai, ' + temperature;
-}
-
-// Initialize website functions
-document.addEventListener('DOMContentLoaded', function() {
-    fetchWeather();
-    
-    // Add hover effect for portfolio items
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    portfolioItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.cursor = 'pointer';
-        });
+// Function to update the weather display
+async function updateWeather() {
+    try {
+        const response = await fetch(WEATHER_API_URL);
         
-        item.addEventListener('click', function() {
-            // Add project viewing functionality here
-            console.log('Project clicked');
-        });
-    });
+        if (!response.ok) {
+            throw new Error(`Weather API error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        const temp = Math.round(data.main.temp);
+        document.querySelector('.location').textContent = `${CITY}, ${temp}°C`;
+        
+        // Update weather every 30 minutes
+        setTimeout(updateWeather, 30 * 60 * 1000);
+    } catch (error) {
+        console.error('Error updating weather:', error);
+        // Try again after 5 minutes if there was an error
+        setTimeout(updateWeather, 5 * 60 * 1000);
+    }
+}
+
+// Initialize when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Start updating time
+    updateTime();
+    
+    // Start updating weather
+    updateWeather();
 });
