@@ -326,3 +326,12 @@ body.loaded {
     transform: translateY(0);
 }
 
+/*removing cursor on mobiles */
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none !important;
+    }
+    body {
+        cursor: auto !important; /* Reset to default */
+    }
+}
