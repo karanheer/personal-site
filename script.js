@@ -1,6 +1,6 @@
 // Global variables
 const WEATHER_API_KEY = 'fdb9a5dcd8d642f7e7a76c488c363485'; // Replace with your actual API key
-const CITY = 'Mumbai';
+const CITY = 'mumbai';
 const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&appid=${WEATHER_API_KEY}`;
 
 // Function to update the time display with seconds
