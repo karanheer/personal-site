@@ -57,28 +57,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //dark mode ting
-
+// Dark mode toggle script
 const toggleButton = document.getElementById("theme-toggle");
+const themeIcon = document.createElement("img");
+themeIcon.src = "media/moon.png"; // Default icon
+themeIcon.width = 24;
+themeIcon.style.transition = "opacity 0.3s ease, transform 0.3s ease"; // Smooth animation
+toggleButton.appendChild(themeIcon);
+
 const body = document.body;
+
+// Function to animate the icon switch
+function updateIcon(newSrc) {
+    themeIcon.style.opacity = 0; // Fade out
+    themeIcon.style.transform = "rotate(180deg)"; // Rotate effect
+
+    setTimeout(() => {
+        themeIcon.src = newSrc; // Update the icon
+        themeIcon.style.opacity = 1; // Fade in
+        themeIcon.style.transform = "rotate(0deg)"; // Reset rotation
+    }, 300); // Match transition duration
+}
 
 // Check if user has a preference stored
 if (localStorage.getItem("theme") === "dark") {
     body.classList.add("dark-mode");
-    toggleButton.textContent = "☀️";
+    updateIcon("media/sun.png");
 }
 
+// Toggle theme on click
 toggleButton.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
 
-    // Save theme preference
     if (body.classList.contains("dark-mode")) {
         localStorage.setItem("theme", "dark");
-        toggleButton.textContent = "☀️";
+        updateIcon("media/sun.png");
     } else {
         localStorage.setItem("theme", "light");
-        toggleButton.textContent = "🌙";
+        updateIcon("media/moon.png");
     }
 });
+
+
+
+
+
+
+
+
 
 
 
@@ -163,3 +189,10 @@ function formatTime(ms) {
 
 setInterval(fetchCurrentlyPlaying, 5000);
 fetchCurrentlyPlaying();
+
+//page load animations
+// Ensure fade-in happens after page load
+window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
+});
+

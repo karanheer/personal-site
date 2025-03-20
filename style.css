@@ -1,7 +1,9 @@
 body {
     background-color: #f2f1ef #EAE9E5;
     transition: background 0.3s, color 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
 
 
@@ -28,6 +30,12 @@ body {
 }
 
 
+.profile-img {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Ensure it's a square */
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover;
+}
 
 
 html, body {
@@ -304,3 +312,18 @@ html {
 }
 
 */
+
+/* page load animations */
+
+/* Fade-in effect on page load */
+body {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+body.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
