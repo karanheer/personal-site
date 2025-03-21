@@ -1,6 +1,9 @@
 body {
-    background-color: #f2f1ef #EAE9E5;
+   /* background-color: #f2f1ef #EAE9E5; */
     transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: white; /* Ensure a solid background for blending */
+    
+
 }
 
 
@@ -43,19 +46,17 @@ html, body {
 
 .custom-cursor {
     position: fixed;
-    width: 8px; /* Adjust size */
+    width: 8px;
     height: 8px;
-    background-color: black; /* Black dot */
+    background-color: #ffffff; /* White dot for better difference effect */
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
+    mix-blend-mode: difference;
+    isolation: isolate; /* Ensures blending works correctly */
 }
 
-
-body.dark-mode .custom-cursor {
-    background-color: #EAE9E5;
-}
 
 
 body {
@@ -364,7 +365,7 @@ body.dark-mode .social-links a {
     height: 100%;
     background: rgb(255, 0, 0);
     z-index: 9999;
-    animation: slideUp 0.6s ease-out forwards;
+    animation: slideUp 1s ease-out forwards;
 }
 
 /* Animation to slide the black overlay up */
@@ -377,4 +378,40 @@ body.dark-mode .social-links a {
     }
 }
 
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on larger screens */
+    gap: 15px; /* Space between images */
+   
+}
+
+/* Individual gallery items */
+.gallery-item {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0px; /* Rounded corners */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+ /*Hover effect */
+
+ /*
+.gallery-item img:hover {
+    transform: scale(1.05); /* Subtle zoom effect */
+
+
+/* ✅ Responsive: 1 column layout on small screens */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr; /* Switch to 1 column on mobile */
+    }
+}
 

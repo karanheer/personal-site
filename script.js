@@ -203,3 +203,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".page-loader").style.display = "none";
     }, 1000); // Matches the animation duration
 });
+
+
+window.addEventListener("load", function () {
+    setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100); // Delay ensures smooth behavior
+});
