@@ -196,3 +196,10 @@ window.addEventListener("load", () => {
     document.body.classList.add("loaded");
 });
 
+//page load
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        document.querySelector(".page-loader").style.display = "none";
+    }, 1000); // Matches the animation duration
+});
