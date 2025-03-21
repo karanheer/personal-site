@@ -132,13 +132,14 @@ table td {
 
 a {
     text-decoration: underline;
-    text-underline-offset: 5.5px; /* Adjust the value as needed */
+    text-underline-offset: 3px; /* Adjust the value as needed */
 }
 
 
 
 td:hover {
     text-decoration: underline;
+    text-underline-offset: 3px; /* Adjust the value as needed */
     cursor: pointer; /* Optional: Changes cursor to indicate interactivity */
 }
 
@@ -177,7 +178,14 @@ th:last-child, td:last-child {
 .email-link {
     color: black;
     text-decoration: underline;
+    text-underline-offset: 6px; /* Adjust the gap as needed */
 }
+
+.email-link:hover {
+    color: rgb(255, 0, 0);
+    text-decoration: underline;
+}
+
 
 /* Change email text to white in dark mode */
 body.dark-mode .email-link {
@@ -186,17 +194,10 @@ body.dark-mode .email-link {
 
 
 
-
 /* Ensure the default pointer (hand) doesn't appear on interactive elements */
 button, a {
     cursor: none; /* Removes the default hand cursor */
 }
-
-
-
-
-
-
 
 
 
@@ -315,16 +316,6 @@ html {
 /* page load animations */
 
 /* Fade-in effect on page load */
-body {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-body.loaded {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 /*removing cursor on mobiles */
 @media (max-width: 768px) {
@@ -335,3 +326,32 @@ body.loaded {
         cursor: auto !important; /* Reset to default */
     }
 }
+
+
+
+
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #121212; /* Adjust for dark mode */
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #ff0000; /* Adjust hover color */
+    text-decoration: underline;
+}
+
+
+body.dark-mode .social-links a {
+    color: white;
+}
+
+
+
